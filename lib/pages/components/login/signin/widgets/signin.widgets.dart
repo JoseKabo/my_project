@@ -1,8 +1,13 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:my_project/shared/colors.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:my_project/pages/components/login/signin/widgets/signinbutton.widget.dart';
+import 'package:my_project/pages/components/login/signup/signup.page.dart';
 
+import 'package:my_project/pages/components/login/signin/widgets/socialbutton.widget.dart';
+import 'package:my_project/pages/components/login/signin/widgets/title.signin.widget.dart';
 // ignore: non_constant_identifier_names
-Widget SignInForm( BuildContext context ){
+Widget SignInBody( BuildContext context ){
 
   final size = MediaQuery.of(context).size;
 
@@ -13,15 +18,94 @@ Widget SignInForm( BuildContext context ){
           child: Container(
             width: size.width * 0.85,
             margin: EdgeInsets.symmetric(vertical: 30.0),
-            padding: EdgeInsets.symmetric( vertical: 50.0 ),
+            padding: EdgeInsets.only(
+              top: 50.0
+            ),
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                titleSignIn(context),
                 _emailInput(),
-                _passwordInput()
+                _passwordInput(),
+                signInButton(),
+                _socialButtons(size),
+                SizedBox(height: 50,),
+                _signUpButton(context, size)
               ],
             ),
           ),
-        )
+        ),
+      ],
+    ),
+  );
+}
+
+Widget _signUpButton(BuildContext context, Size size){
+  return Center(
+    child: Container(
+      padding: EdgeInsets.all(10),
+      decoration: BoxDecoration(
+        // color: Colors.amber,
+        borderRadius: BorderRadius.circular(15)
+      ),
+      child: InkWell(
+        splashColor: Colors.blueAccent,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Icon(Icons.arrow_upward_rounded, color: Colors.white60,),
+            Text('Registrarse', style: TextStyle(color: Colors.white54),)
+          ],
+        ),
+        onTap: () {
+          _showSignUpForm(context);
+        },
+      ),
+    ),
+  );
+}
+
+void _showSignUpForm(context){
+  showModalBottomSheet(context: context, builder: (context){
+    return Container(
+      color: Colors.transparent,
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.only(
+            topRight: const Radius.circular(25.0),
+            topLeft: const Radius.circular(25.0)
+          )
+        ),
+        child: SignUpPage()
+      ),
+    );
+  });
+}
+
+Widget _socialButtons(Size size){
+  return Container(
+    alignment: Alignment.center,
+    child: Column(
+      children: [
+        Text(
+          'conectar con',
+          style: TextStyle(
+            color: Colors.white70
+          ),
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            socialButtonConnect(
+              social: 'facebook',
+              socialIcon: FaIcon(FontAwesomeIcons.facebookF).icon,
+            ),
+            socialButtonConnect(
+              social: 'google',
+              socialIcon: FaIcon(FontAwesomeIcons.google).icon,
+            )
+          ],
+        ),
       ],
     ),
   );
@@ -35,11 +119,27 @@ Widget _passwordInput(){
       children: [
         Padding(
           padding: const EdgeInsets.only(bottom: 10.0),
-          child: Text(
-            'Contraseña',
-            style: TextStyle(
-              color: Colors.white70
-            ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                'Contraseña',
+                style: TextStyle(
+                  color: Colors.white70
+                ),
+              ),
+              // Row(
+              //   children: [
+              //     Text('Mostrar'),
+              //     Switch(
+              //       activeColor: ApplicationColors.kDangerColor,
+              //       inactiveTrackColor: ApplicationColors.kPrimaryColor,
+              //       value: true,
+              //       onChanged: (bool value) {}
+              //     )
+              //   ],
+              // ),
+            ],
           ),
         ),
         TextFormField(
@@ -85,6 +185,19 @@ Widget _passwordInput(){
           cursorHeight: 24,
           cursorWidth: 2.5,
         ),
+        // BUTTON I FORGET MY PASSWORD
+        Container(
+          alignment: Alignment.centerRight,
+          child: TextButton(
+            onPressed: () {}, 
+            child: Text(
+              'Olvide mi contraseña',
+              style: TextStyle(
+                  color: Colors.white70
+              ),
+            )
+          ),
+        )
       ],
     ),
   );

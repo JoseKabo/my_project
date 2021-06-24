@@ -67,6 +67,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  font_awesome_flutter:
+    dependency: "direct main"
+    description:
+      name: font_awesome_flutter
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "9.1.0"
   matcher:
     dependency: transitive
     description:
@@ -88,6 +95,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.8.0"
+  progress_state_button:
+    dependency: "direct main"
+    description:
+      name: progress_state_button
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.3"
   sky_engine:
     dependency: transitive
     description: flutter
