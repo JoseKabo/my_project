@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:my_project/pages/components/login/forgotPassword/forgotpassword.page.dart';
 import 'package:my_project/pages/components/login/signin/widgets/signinbutton.widget.dart';
 import 'package:my_project/pages/components/login/signup/signup.page.dart';
 
@@ -26,7 +27,7 @@ Widget SignInBody( BuildContext context ){
               children: [
                 titleSignIn(context),
                 _emailInput(),
-                _passwordInput(),
+                _passwordInput(context),
                 signInButton(),
                 _socialButtons(size),
                 SizedBox(height: 50,),
@@ -66,18 +67,23 @@ Widget _signUpButton(BuildContext context, Size size){
 }
 
 void _showSignUpForm(context){
-  showModalBottomSheet(context: context, builder: (context){
-    return Container(
-      color: Colors.transparent,
-      child: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.only(
-            topRight: const Radius.circular(25.0),
-            topLeft: const Radius.circular(25.0)
-          )
-        ),
-        child: SignUpPage()
-      ),
+  showModalBottomSheet(
+    context: context,
+    isScrollControlled: true,
+    builder: (context)
+    {
+    return DraggableScrollableSheet(
+      initialChildSize: 0.9,
+      maxChildSize: 1,
+      minChildSize: 0.25,
+      builder: (
+        BuildContext context,
+        ScrollController scrollController
+      ){
+        return SignUpPage(
+          scrollController: scrollController,
+        );
+      },
     );
   });
 }
@@ -111,7 +117,7 @@ Widget _socialButtons(Size size){
   );
 }
 
-Widget _passwordInput(){
+Widget _passwordInput(BuildContext context){
   return Container(
     padding: EdgeInsets.all(8.00),
     child: Column(
@@ -189,7 +195,9 @@ Widget _passwordInput(){
         Container(
           alignment: Alignment.centerRight,
           child: TextButton(
-            onPressed: () {}, 
+            onPressed: () {
+              showRecoverDialog(context);
+            }, 
             child: Text(
               'Olvide mi contraseña',
               style: TextStyle(
@@ -202,6 +210,21 @@ Widget _passwordInput(){
     ),
   );
 }
+
+// void _showRecoverDialog(context){
+//   showCupertinoDialog(
+//       context: context,
+//       builder: (context) => CupertinoAlertDialog(
+//         title: Text('Correo de recuperacion'),
+//         actions: [
+//           CupertinoDialogAction(
+//             child: Text('Close'),
+//             onPressed: () => Navigator.pop(context)
+//           ),
+//         ],
+//       )
+//     );
+// }
 
 Widget _emailInput(){
   return Container(

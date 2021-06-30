@@ -2,11 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:my_project/pages/components/login/signup/widgets/body.widget.dart';
 
 class SignUpPage extends StatelessWidget {
-  const SignUpPage({Key? key}) : super(key: key);
+  const SignUpPage({Key? key, ScrollController? scrollController}) : super(key: key);
+
+  get scrollController => null;
 
   @override
   Widget build(BuildContext context) {
     return Container(
+      color: Colors.transparent,
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.only(
@@ -23,7 +26,12 @@ class SignUpPage extends StatelessWidget {
           ),
         ),
         padding: EdgeInsets.all(15),
-        child: signUpBody(context),
+        child: ListView(
+          controller: scrollController,
+          children: [
+            signUpBody(context)
+          ],
+        ),
       ),
     );
   }
