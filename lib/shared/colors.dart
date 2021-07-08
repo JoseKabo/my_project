@@ -10,4 +10,11 @@ class ApplicationColors {
   static const kSuccessColor = Color(0xffE9C46A);
   static const kWarningColor = Color(0xffffB703);
   static const kFocusInputColor = Color(0xff0000FF);
+
+  // profile
+  static const kPrimaryBkgColor = Color(0xff02040f);
+  static const kSecundaryBkgColor = Color(0xFF0B1724);
+  static const kIndicatorTapColor = Color(0xFF938CFA);
+  static const kEditButtonColor = Color(0xE8BBB6FF);
+
 }
