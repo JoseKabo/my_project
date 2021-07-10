@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:my_project/core/models/stadistics.models.dart';
 import 'package:my_project/pages/components/home/profile/widgets/viewpicture.widget.dart';
 
 Row presentationCard(
   BuildContext context,
   {
-    String? username
+    String? username,
+    StadisticsModel? stadisticsModel
   }
 ) {
   return Row(
@@ -105,7 +107,7 @@ Row presentationCard(
                       child: Column(
                         children: [
                           Text(
-                            '2456',
+                            stadisticsModel!.posts.toString(),
                             style: TextStyle(
                               fontSize: 18,
                               color: Colors.white70,
@@ -113,7 +115,7 @@ Row presentationCard(
                             ),
                           ),
                           Text(
-                            'Seguidores',
+                            'Posthinks',
                             style: TextStyle(
                               fontSize: 12,
                               color: Colors.white54,
@@ -129,7 +131,7 @@ Row presentationCard(
                       child: Column(
                         children: [
                           Text(
-                            '2456',
+                            stadisticsModel.likes.toString(),
                             style: TextStyle(
                               fontSize: 18,
                               color: Colors.white70,
@@ -137,7 +139,7 @@ Row presentationCard(
                             ),
                           ),
                           Text(
-                            'Siguiendo',
+                            'Likes',
                             style: TextStyle(
                               fontSize: 12,
                               color: Colors.white54,
@@ -153,7 +155,7 @@ Row presentationCard(
                       child: Column(
                         children: [
                           Text(
-                            '2456',
+                            stadisticsModel.trashes.toString(),
                             style: TextStyle(
                               fontSize: 18,
                               color: Colors.white70,
@@ -161,7 +163,7 @@ Row presentationCard(
                             ),
                           ),
                           Text(
-                            'Posts',
+                            'Trashes',
                             style: TextStyle(
                               fontSize: 12,
                               color: Colors.white54,

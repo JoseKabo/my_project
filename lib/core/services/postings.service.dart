@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:http/http.dart' as http;
 import 'package:my_project/core/models/newpost.model.dart';
 import 'package:my_project/core/models/postinentry.model.dart';

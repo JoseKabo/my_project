@@ -4,10 +4,10 @@ import 'package:flutter/material.dart';
 
 
 Center soundItem({
-  String? id,
-  String? description,
-  int? likes,
-  int? trashes,
+  String? id = 'x',
+  String? description = 'test',
+  int? likes = 0,
+  int? trashes = 0,
   DateTime? posted
 }) {
     return Center(
