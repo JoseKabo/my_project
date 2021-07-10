@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:my_project/pages/components/home/main.page.dart';
 import 'package:my_project/pages/components/home/posting/posting.page.dart';
+import 'package:my_project/pages/components/home/posting/widgets/recording.widget.dart';
 import 'package:my_project/pages/components/home/profile/profile.page.dart';
 import 'package:my_project/pages/components/login/signin/signin.page.dart';
 import 'package:my_project/pages/components/login/signup/components/interests.component.dart';
@@ -17,7 +19,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Lis.to',
-      initialRoute: 'Posting',
+      initialRoute: 'Main',
       theme: new ThemeData(
         primarySwatch: Colors.teal,
         canvasColor: Colors.transparent,
@@ -26,7 +28,7 @@ class MyApp extends StatelessWidget {
         'AuthScreen': ( _ ) => SignInPage(),
         'InterestsScreen': ( _ ) => InterestsPage(),
         'MyProfile': ( __ ) => ProfilePage(),
-        'Posting': ( __ ) => PostingPage(),
+        'Main': ( __ ) => MainPage(),
       },
     );
   }

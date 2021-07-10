@@ -24,7 +24,7 @@ class _ProfilePageState extends State<ProfilePage> with TickerProviderStateMixin
   final List<Widget> myTabs = [
     Tab(
       icon: const Icon(Icons.music_note_rounded),
-      text: 'Mis audios',
+      text: 'Mis postings',
     ),
     Tab(
       icon: const Icon(Icons.account_circle_rounded),
@@ -140,7 +140,7 @@ class _ProfilePageState extends State<ProfilePage> with TickerProviderStateMixin
                 children: [
                   // Sounds
                   GridView.count(
-                    crossAxisCount: 2,
+                    crossAxisCount: 1,
                     children: List.generate(10, (index) {
                       return soundItem();
                     }),

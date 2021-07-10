@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:my_project/controllers/newpost.controller.dart';
 
 Widget buttonPosting({
     Color? kiBackgrounColor,
     Color? kiForegroundColor,
     IconData? kiIcon,
     String? text,
-    String? action
+    String? action,
+    required NewPostController newPostController,
+    required BuildContext context
   }) {
     return Container(
       padding: EdgeInsets.all(20),
@@ -34,8 +37,9 @@ Widget buttonPosting({
             ),
           ],
         ),
-        onTap: () {
-          print('published');
+        onTap: () { 
+          newPostController.checkForm();
+          Navigator.pop(context);
         },
       ),
     );
