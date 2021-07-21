@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:my_project/core/models/basicInfo.model.dart';
+import 'package:my_project/pages/components/home/profile/components/updateInfo.component.dart';
 
 InkWell buttonProfileShared({
     Color? kiBackgrounColor,
     Color? kiForegroundColor,
     IconData? kiIcon,
     String? text,
-    String? action
+    String? action,
+    required BuildContext context
   }) {
     return InkWell(
       child: Container(
@@ -36,7 +39,35 @@ InkWell buttonProfileShared({
         ),
       ),
       onTap: (){
-        print('edit');
+        (action!.endsWith('edit')) 
+          ? _showUpdateForm(
+            context
+          ) 
+          : _showUpdateForm(
+            context
+          );
       },
     );
   }
+
+void _showUpdateForm(context){
+  showModalBottomSheet(
+    context: context,
+    isScrollControlled: true,
+    builder: (context)
+    {
+    return DraggableScrollableSheet(
+      initialChildSize: 0.9,
+      maxChildSize: 1,
+      minChildSize: 0.25,
+      builder: (
+        BuildContext context,
+        ScrollController scrollController
+      ){
+        return UpdateInfo(
+          scrollController: scrollController
+        );
+      },
+    );
+  });
+}

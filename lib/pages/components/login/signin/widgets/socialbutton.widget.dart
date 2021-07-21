@@ -21,7 +21,7 @@ Widget socialButtonConnect({
                   print('facebook tabed');
                 break;
                 case 'google':
-                  print('google tabed');
+                  
                 break;
                 default:
               }

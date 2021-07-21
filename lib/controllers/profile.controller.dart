@@ -1,7 +1,9 @@
 import 'package:get/state_manager.dart';
 import 'package:my_project/core/models/basicInfo.model.dart';
+import 'package:my_project/core/models/newuserInfo.model.dart';
 import 'package:my_project/core/models/postings.model.dart';
 import 'package:my_project/core/models/stadistics.models.dart';
+import 'package:my_project/core/models/updateinfo.model.dart';
 import 'package:my_project/core/services/myprofile.service.dart';
 
 class ProfileController extends GetxController{
@@ -26,14 +28,30 @@ class ProfileController extends GetxController{
     }
   }
 
-  void getMyBasicInfo() async {
+  Future<bool> updateMyInfo({
+    required NewUserInfoModel infoModel
+  }) async {
+    var response = await ProfileService.updateInfo(newuserInfo: infoModel);
+    if(response!.error == false && response.message!.response!.length > 0){
+      final updatedModel = response.message!.response![0];
+      this.basicInfo.biography = updatedModel.biography;
+      this.basicInfo.birthday = updatedModel.birthday;
+      this.basicInfo.email = updatedModel.email;
+      this.basicInfo.username = updatedModel.username;
+      return true;
+    }
+    return false;
+  }
+
+  Future getMyBasicInfo() async {
     var infoResponse = await ProfileService.getMyBasicInfo(id: '6ba7b810-9dad-11d1-80b4-00c04fd430c8');
     if ( infoResponse!.status == 200 && infoResponse.message!.response!.length > 0 ){
       this.basicInfo = infoResponse.message!.response![0];
+      
     }
   }
 
-  void getMyStadistics() async {
+  Future getMyStadistics() async {
     var infoResponse = await ProfileService.getMyStadistics(id: '6ba7b810-9dad-11d1-80b4-00c04fd430c8');
     if ( infoResponse!.status == 200 && infoResponse.message!.response!.length > 0 ){
       this.stadistics = infoResponse.message!.response![0];

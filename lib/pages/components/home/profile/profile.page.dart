@@ -10,6 +10,7 @@ import 'components/infoContainer.component.dart';
 import 'components/presentationCard.component.dart';
 import 'components/signOut.components.dart';
 import 'components/sound.component.dart';
+import 'package:intl/intl.dart';
 // import 'package:flutter/services.dart';
 
 class ProfilePage extends StatefulWidget {
@@ -178,7 +179,7 @@ class _ProfilePageState extends State<ProfilePage> with TickerProviderStateMixin
                               crossAxisAlignment: CrossAxisAlignment.stretch,
                               children: [
                                 showInfoContainer( info: profileController.basicInfo.name, title: 'Nombre' ),
-                                showInfoContainer( info: profileController.basicInfo.birthday, title: 'Nacimiento' ),
+                                showInfoContainer( info: DateFormat("dd-MM-yyyy").format(DateTime.parse(profileController.basicInfo.birthday!)), title: 'Nacimiento' ),
                                 showInfoContainer( info: profileController.basicInfo.email, title: 'Email' ),
                                 showInfoContainer( info: profileController.basicInfo.biography, title: 'Biografia'),
                                 buttonProfileShared(
@@ -186,14 +187,16 @@ class _ProfilePageState extends State<ProfilePage> with TickerProviderStateMixin
                                   kiBackgrounColor: Color(0x805D5669),
                                   kiForegroundColor: Colors.blueAccent,
                                   kiIcon: CupertinoIcons.pencil_outline,
-                                  text: 'Editar'
+                                  text: 'Editar',
+                                  context: context
                                 ),
                                 buttonProfileShared(
                                   action: 'change',
                                   kiBackgrounColor: Color(0xD099153C),
                                   kiForegroundColor: Colors.redAccent,
                                   kiIcon: CupertinoIcons.lock_open_fill,
-                                  text: 'Cambiar contraseña'
+                                  text: 'Cambiar contraseña',
+                                  context: context
                                 )
                               ],
                             ),

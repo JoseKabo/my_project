@@ -39,11 +39,11 @@ class NewPostController extends GetxController{
     if(!isValid)
       return;
     postingFormKey.currentState!.save();
-    descriptionController.clear();
     postingsController.addPosting(body: new AddPostModel(
       description: description,
       idUser: "6ba7b810-9dad-11d1-80b4-00c04fd430c8"
     ));
+    descriptionController.clear();
   }
 
 }

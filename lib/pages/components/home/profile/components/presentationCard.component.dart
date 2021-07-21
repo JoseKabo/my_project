@@ -6,7 +6,7 @@ import 'package:my_project/pages/components/home/profile/widgets/viewpicture.wid
 Row presentationCard(
   BuildContext context,
   {
-    String? username,
+    String? username = 'test',
     StadisticsModel? stadisticsModel
   }
 ) {
@@ -21,7 +21,7 @@ Row presentationCard(
           ),
           child: CircleAvatar(
             backgroundImage: NetworkImage(
-              "https://scontent.frex1-1.fna.fbcdn.net/v/t1.6435-9/167319593_270686221309753_1217886808624443140_n.jpg?_nc_cat=111&ccb=1-3&_nc_sid=09cbfe&_nc_eui2=AeHkUTuLHDIk0QDmPs5vEY3QfQw1SUZd2UB9DDVJRl3ZQJbx1o5sV_xhmjf9_Be1jL9WKIO-W5y-IiJqJlfDR0Jc&_nc_ohc=kyJ92E77VS4AX-1D4RO&_nc_ht=scontent.frex1-1.fna&oh=6b670976786da12b88ea37cd9e89b50f&oe=60EB99A7",
+              "http://weesofts.com/assetspublics/posthinks/profile_posthinks.png",
             ),
             radius: 45.0,
           ),
@@ -36,7 +36,7 @@ Row presentationCard(
                 FadeTransition(
                   opacity: _animation,
                   child: ViewProfilePicture(
-                    urlImage: "https://scontent.frex1-1.fna.fbcdn.net/v/t1.6435-9/167319593_270686221309753_1217886808624443140_n.jpg?_nc_cat=111&ccb=1-3&_nc_sid=09cbfe&_nc_eui2=AeHkUTuLHDIk0QDmPs5vEY3QfQw1SUZd2UB9DDVJRl3ZQJbx1o5sV_xhmjf9_Be1jL9WKIO-W5y-IiJqJlfDR0Jc&_nc_ohc=kyJ92E77VS4AX-1D4RO&_nc_ht=scontent.frex1-1.fna&oh=6b670976786da12b88ea37cd9e89b50f&oe=60EB99A7",
+                    urlImage: "http://weesofts.com/assetspublics/posthinks/profile_posthinks.png",
                     userId: 'ase13423',
                   ),
                 ),
@@ -96,87 +96,87 @@ Row presentationCard(
             ),
           ),
           SizedBox(height: 10,),
-          Container(
-            child: FittedBox(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Container(
-                    margin: EdgeInsets.all(8),
-                    child: Center(
-                      child: Column(
-                        children: [
-                          Text(
-                            stadisticsModel!.posts.toString(),
-                            style: TextStyle(
-                              fontSize: 18,
-                              color: Colors.white70,
-                              fontWeight: FontWeight.w700
-                            ),
-                          ),
-                          Text(
-                            'Posthinks',
-                            style: TextStyle(
-                              fontSize: 12,
-                              color: Colors.white54,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  Container(
-                    margin: EdgeInsets.all(8),
-                    child: Center(
-                      child: Column(
-                        children: [
-                          Text(
-                            stadisticsModel.likes.toString(),
-                            style: TextStyle(
-                              fontSize: 18,
-                              color: Colors.white70,
-                              fontWeight: FontWeight.w700
-                            ),
-                          ),
-                          Text(
-                            'Likes',
-                            style: TextStyle(
-                              fontSize: 12,
-                              color: Colors.white54,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  Container(
-                    margin: EdgeInsets.all(8),
-                    child: Center(
-                      child: Column(
-                        children: [
-                          Text(
-                            stadisticsModel.trashes.toString(),
-                            style: TextStyle(
-                              fontSize: 18,
-                              color: Colors.white70,
-                              fontWeight: FontWeight.w700
-                            ),
-                          ),
-                          Text(
-                            'Trashes',
-                            style: TextStyle(
-                              fontSize: 12,
-                              color: Colors.white54,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  )
-                ],
-              ),
-            ),
-          )
+          // Container(
+          //   child: FittedBox(
+          //     child: Row(
+          //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //       children: [
+          //         Container(
+          //           margin: EdgeInsets.all(8),
+          //           child: Center(
+          //             child: Column(
+          //               children: [
+          //                 Text(
+          //                   stadisticsModel!.posts.toString(),
+          //                   style: TextStyle(
+          //                     fontSize: 18,
+          //                     color: Colors.white70,
+          //                     fontWeight: FontWeight.w700
+          //                   ),
+          //                 ),
+          //                 Text(
+          //                   'Posthinks',
+          //                   style: TextStyle(
+          //                     fontSize: 12,
+          //                     color: Colors.white54,
+          //                   ),
+          //                 ),
+          //               ],
+          //             ),
+          //           ),
+          //         ),
+          //         Container(
+          //           margin: EdgeInsets.all(8),
+          //           child: Center(
+          //             child: Column(
+          //               children: [
+          //                 Text(
+          //                   stadisticsModel.likes.toString(),
+          //                   style: TextStyle(
+          //                     fontSize: 18,
+          //                     color: Colors.white70,
+          //                     fontWeight: FontWeight.w700
+          //                   ),
+          //                 ),
+          //                 Text(
+          //                   'Likes',
+          //                   style: TextStyle(
+          //                     fontSize: 12,
+          //                     color: Colors.white54,
+          //                   ),
+          //                 ),
+          //               ],
+          //             ),
+          //           ),
+          //         ),
+          //         Container(
+          //           margin: EdgeInsets.all(8),
+          //           child: Center(
+          //             child: Column(
+          //               children: [
+          //                 Text(
+          //                   stadisticsModel.trashes.toString(),
+          //                   style: TextStyle(
+          //                     fontSize: 18,
+          //                     color: Colors.white70,
+          //                     fontWeight: FontWeight.w700
+          //                   ),
+          //                 ),
+          //                 Text(
+          //                   'Trashes',
+          //                   style: TextStyle(
+          //                     fontSize: 12,
+          //                     color: Colors.white54,
+          //                   ),
+          //                 ),
+          //               ],
+          //             ),
+          //           ),
+          //         )
+          //       ],
+          //     ),
+          //   ),
+          // )
         ],
       )
     ],  
