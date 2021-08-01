@@ -5,6 +5,7 @@ import 'package:my_project/core/models/newuserInfo.model.dart';
 import 'package:my_project/core/models/postings.model.dart';
 import 'package:my_project/core/models/stadistics.models.dart';
 import 'package:my_project/core/models/updateinfo.model.dart';
+import 'package:my_project/shared/endpoints.dart';
 
 class ProfileService {
   static var client = http.Client();
@@ -16,12 +17,12 @@ class ProfileService {
       'id': id
     };
     var uriResponse = await client.post(
-      Uri.parse('http://192.168.1.67:3000/profile/myposts'),
+      Uri.parse("${Endpoints.dev_external}/profile/myposts"),
       body: data
     );
     if(uriResponse.statusCode == 200) {
       var jsonResponse = uriResponse.body;
-      print(jsonResponse);
+      // print(jsonResponse);
       return postingsResponseFromJson(jsonResponse);
     }else {
       return null;
@@ -39,7 +40,7 @@ class ProfileService {
     };
 
     var uriResponse = await client.post(
-      Uri.parse('http://192.168.1.67:3000/profile/changeInfo'),
+      Uri.parse("${Endpoints.dev_external}/profile/changeInfo"),
       body: data
     );
 
@@ -58,12 +59,12 @@ class ProfileService {
       'id': id
     };
     var uriResponse = await client.post(
-      Uri.parse('http://192.168.1.67:3000/profile/mybasicinfo'),
+      Uri.parse('${Endpoints.dev_external}/profile/mybasicinfo'),
       body: data
     );
     if(uriResponse.statusCode == 200){
       var jsonResponse = uriResponse.body;
-      print(jsonResponse);
+      // print(jsonResponse);
       return basicInfoResponseFromJson(jsonResponse);
     } else {
       return null;
@@ -77,7 +78,7 @@ class ProfileService {
       'id': id
     };
     var uriResponse = await client.post(
-      Uri.parse('http://192.168.1.67:3000/profile/mystadistics'),
+      Uri.parse('${Endpoints.dev_external}/profile/mystadistics'),
       body: data
     );
     if(uriResponse.statusCode == 200){

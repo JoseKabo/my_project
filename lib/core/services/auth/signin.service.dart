@@ -1,6 +1,7 @@
 import 'package:http/http.dart' as http;
 import 'package:my_project/core/models/signIn.model.dart';
 import 'package:my_project/core/models/signInResponse.model.dart';
+import 'package:my_project/shared/endpoints.dart';
 
 
 class SignInService {
@@ -15,12 +16,11 @@ class SignInService {
       'password': model.password
     };
     var uriResponse = await client.post(
-      Uri.parse('http://192.168.1.67:3000/auth/signin'),
+      Uri.parse("${Endpoints.dev_external}/auth/signin".toString()),
       body: data
     );
     if( uriResponse.statusCode == 200 ){
       var jsonResponse = uriResponse.body;
-      print(jsonResponse);
       if(jsonResponse.contains('false'))
         return signInModelResponseFromJson(jsonResponse);
       else

@@ -39,6 +39,7 @@ dependencies:
   http: ^0.13.3
   intl: ^0.17.0
   shared_preferences: ^2.0.6
+  fluttertoast: ^8.0.7
   # permission_handler: ^8.1.2
   # flutter_sound: ^6.0.0
   # flutter_ffmpeg: ^0.3.1

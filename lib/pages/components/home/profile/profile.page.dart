@@ -15,14 +15,13 @@ import 'package:intl/intl.dart';
 
 class ProfilePage extends StatefulWidget {
   ProfilePage({Key? key}) : super(key: key);
-
   @override
   _ProfilePageState createState() => _ProfilePageState();
 }
 
 class _ProfilePageState extends State<ProfilePage> with TickerProviderStateMixin {
+  ProfileController profileController = Get.put(ProfileController());
 
-  String username = 'jokamexd0699';
   final bodyGlobalKey = GlobalKey();
   final List<Widget> myTabs = [
     Tab(
@@ -40,9 +39,6 @@ class _ProfilePageState extends State<ProfilePage> with TickerProviderStateMixin
 
   AnimationController? _animationController;
   Animation? _animation;
-
-  ProfileController profileController = Get.put(ProfileController());
-
   @override
   void initState() {
     // scroll and tab
@@ -62,6 +58,7 @@ class _ProfilePageState extends State<ProfilePage> with TickerProviderStateMixin
     ).animate(_animationController!);
     super.initState();
   }
+
 
   @override
   void dispose() {
@@ -96,11 +93,12 @@ class _ProfilePageState extends State<ProfilePage> with TickerProviderStateMixin
 
   @override
   Widget build(BuildContext context) {
-
+    var username = profileController.user.value.username ?? 'Mi perfil';
+    var myPosthinks = profileController.myPostingsList;
     return Scaffold(
       backgroundColor: Colors.blueAccent,
-      body: Obx(
-        () => Stack(
+      body: 
+        Stack(
           children: [
             radianBackgrounShared(
               firstColor: ApplicationColors.kPrimaryBkgColor,
@@ -116,13 +114,9 @@ class _ProfilePageState extends State<ProfilePage> with TickerProviderStateMixin
                     toolbarHeight: 200,
                     title: Column(
                       children: [
-                        signOutButton(),
+                        signOutButton(contextx: context,),
                         SizedBox(height: 30,),
-                        presentationCard(
-                          context,
-                          username: profileController.basicInfo.username,
-                          stadisticsModel: profileController.stadistics
-                        ),
+                        PresentationCard(context: context, username: username,)
                       ],
                     ),
                     stretch: false,
@@ -153,17 +147,46 @@ class _ProfilePageState extends State<ProfilePage> with TickerProviderStateMixin
                     children: [
                       RefreshIndicator(
                         onRefresh: pullRefresh,
-                        child: GridView.count(
-                          crossAxisCount: 1,
-                          children: List.generate(profileController.myPostingsList.length, (index) {
-                            return soundItem(
-                              description: profileController.myPostingsList[index].description,
-                              id: profileController.myPostingsList[index].id,
-                              likes: profileController.myPostingsList[index].likes,
-                              posted: profileController.myPostingsList[index].posted,
-                              trashes: profileController.myPostingsList[index].trashes,
-                            );
-                          }),
+                        child: Obx(
+                          () => (myPosthinks.length > 0) ? GridView.count(
+                            crossAxisCount: 1,
+                            children: List.generate(myPosthinks.length, (index) {
+                              return soundItem(
+                                description: myPosthinks[index].description,
+                                id: myPosthinks[index].id,
+                                likes: myPosthinks[index].likes,
+                                posted: myPosthinks[index].posted,
+                                trashes: myPosthinks[index].trashes,
+                              );
+                            }),
+                          )
+                          : GridView.count(
+                            crossAxisCount: 1,
+                            children: List.generate(1, (index) {
+                              return Container(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Row(
+                                      children: [
+                                        Icon(
+                                          Icons.hourglass_empty,
+                                          color: Colors.white60,
+                                        ),
+                                        Text(
+                                          'Aún no has publicado nada',
+                                          style: TextStyle(
+                                            color: Colors.white70,
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                        )
+                                      ],
+                                    )
+                                  ],
+                                ),
+                              );
+                            }),
+                          )
                         )
                       ),
                       // Profile
@@ -178,10 +201,18 @@ class _ProfilePageState extends State<ProfilePage> with TickerProviderStateMixin
                           child: Column(
                               crossAxisAlignment: CrossAxisAlignment.stretch,
                               children: [
-                                showInfoContainer( info: profileController.basicInfo.name, title: 'Nombre' ),
-                                showInfoContainer( info: DateFormat("dd-MM-yyyy").format(DateTime.parse(profileController.basicInfo.birthday!)), title: 'Nacimiento' ),
-                                showInfoContainer( info: profileController.basicInfo.email, title: 'Email' ),
-                                showInfoContainer( info: profileController.basicInfo.biography, title: 'Biografia'),
+                                Obx(
+                                  () =>
+                                  Column(
+                                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                                    children: [
+                                      showInfoContainer( info: profileController.user.value.name, title: 'Nombre' ),
+                                      showInfoContainer( info: DateFormat("dd-MM-yyyy").format(profileController.user.value.birthday ?? DateTime.now()), title: 'Nacimiento' ),
+                                      showInfoContainer( info: profileController.user.value.email, title: 'Email' ),
+                                      showInfoContainer( info: profileController.user.value.biography, title: 'Biografia'),
+                                    ],
+                                  )
+                                ),
                                 buttonProfileShared(
                                   action: 'edit',
                                   kiBackgrounColor: Color(0x805D5669),
@@ -208,7 +239,6 @@ class _ProfilePageState extends State<ProfilePage> with TickerProviderStateMixin
             ),
           ],
         ),
-      )
     );
   }
 }

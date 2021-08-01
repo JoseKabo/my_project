@@ -4,17 +4,21 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/state_manager.dart';
 import 'package:get/get.dart';
+import 'package:my_project/core/datasource/local.data.dart';
 import 'package:my_project/core/models/signIn.model.dart';
+import 'package:my_project/core/models/signInResponse.model.dart';
 import 'package:my_project/core/services/auth/signin.service.dart';
 import 'package:progress_state_button/progress_button.dart';
 
 class SignInFormController extends GetxController{
 
   final GlobalKey<FormState> signInFormKey = GlobalKey<FormState>();
+  LocalData _localData = LocalData();
 
   late TextEditingController emailController;
   late TextEditingController passwordController;
   ButtonState? btnState = ButtonState.idle;
+
 
   var email = '';
   var password = '';
@@ -64,6 +68,7 @@ class SignInFormController extends GetxController{
       );
       if(response != null && response.error == false && response.userInfo != null){
         this.btnState = ButtonState.success;
+        this._localData.saveUser(response.userInfo ?? new UserInfo());
         return true;
       }
       print(response);

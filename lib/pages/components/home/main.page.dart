@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:my_project/controllers/profile.controller.dart';
 import 'package:my_project/pages/components/home/home/home.page.dart';
 import 'package:my_project/pages/components/home/posting/posting.page.dart';
 import 'package:my_project/pages/components/home/profile/profile.page.dart';

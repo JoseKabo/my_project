@@ -61,6 +61,8 @@ class _SignInButtonState extends State<SignInButton> {
                   ? ButtonState.success
                   : ButtonState.fail;
             });
+            if(this.currentState == ButtonState.success)
+              Navigator.pushReplacementNamed(context, 'Main');
           });
         },
         

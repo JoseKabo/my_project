@@ -1,17 +1,25 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:my_project/controllers/postings.controller.dart';
+import 'package:my_project/core/datasource/local.data.dart';
 import 'package:my_project/core/models/postinentry.model.dart';
+import 'package:my_project/core/models/signInResponse.model.dart';
 
 class NewPostController extends GetxController{
 
   final GlobalKey<FormState> postingFormKey = GlobalKey<FormState>();
-  PostingController postingsController = Get.put(PostingController());
+  // PostingController postingsController = Get.put(PostingController());
+  PostingController postingsController = Get.find<PostingController>();
+
+  LocalData localData = new LocalData();
+  Rx<UserInfo> user = UserInfo().obs;
+
   late TextEditingController descriptionController;
   var description = '';
 
   @override
   void onInit() {
+    getMyBasicInfo();
     super.onInit();
     descriptionController = TextEditingController();
   }
@@ -25,6 +33,13 @@ class NewPostController extends GetxController{
   void onClose() {
     descriptionController.dispose();
     super.onClose();
+  }
+
+  void getMyBasicInfo() async {
+    await localData.getUser().then((value) => {
+      if( value!.name!.length > 0)
+        user(value)
+    });
   }
 
   String? validateDescription(String value){
@@ -41,7 +56,7 @@ class NewPostController extends GetxController{
     postingFormKey.currentState!.save();
     postingsController.addPosting(body: new AddPostModel(
       description: description,
-      idUser: "6ba7b810-9dad-11d1-80b4-00c04fd430c8"
+      idUser: user.value.id
     ));
     descriptionController.clear();
   }

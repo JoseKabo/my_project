@@ -244,7 +244,7 @@ Widget _birthdayInput(
           cursorHeight: 24,
           cursorWidth: 2.5,
           onTap: () {
-             _selectDate(context, _updateFormController.birthdayController);
+            _selectDate(context, _updateFormController.birthdayController);
           },
           readOnly: true,
           controller: _updateFormController.birthdayController,

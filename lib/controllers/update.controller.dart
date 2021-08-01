@@ -5,14 +5,19 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/state_manager.dart';
 import 'package:get/get.dart';
 import 'package:my_project/controllers/profile.controller.dart';
+import 'package:my_project/core/datasource/local.data.dart';
 import 'package:my_project/core/models/newuserInfo.model.dart';
+import 'package:my_project/core/models/signInResponse.model.dart';
 import 'package:progress_state_button/progress_button.dart';
 
 class UpdateFormController extends GetxController{
 
   final GlobalKey<FormState> updateFormKey = GlobalKey<FormState>();
-  ProfileController _profileController = Get.put(ProfileController());
+  ProfileController _profileController = Get.find<ProfileController>();
   
+  final LocalData localData = new LocalData();
+  Rx<UserInfo> user = UserInfo().obs;
+
   late TextEditingController usernameController;
   late TextEditingController emailController;
   late TextEditingController birthdayController;
@@ -30,15 +35,16 @@ class UpdateFormController extends GetxController{
   @override
   void onInit() {
     // TODO: implement onInit
+    getMyBasicInfo();
     super.onInit();
-    usernameController = TextEditingController();
-    emailController = TextEditingController();
-    birthdayController = TextEditingController();
-    biographyController = TextEditingController();
-    usernameController.text = _profileController.basicInfo.username!;
-    emailController.text = _profileController.basicInfo.email!;
-    birthdayController.text = _profileController.basicInfo.birthday!;
-    biographyController.text = _profileController.basicInfo.biography!;
+    usernameController = TextEditingController( text: _profileController.user.value.username ?? 'posthinks...' );
+    emailController = TextEditingController( text: _profileController.user.value.email ?? 'posthinks...' );
+    birthdayController = TextEditingController( text: _profileController.user.value.birthday!.toLocal().toString().split(' ')[0] );
+    biographyController = TextEditingController( text: _profileController.user.value.biography ?? 'Aun no agregas algo de ti...' );
+    // usernameController.text = _profileController.basicInfo.username!;
+    // emailController.text = _profileController.basicInfo.email!;
+    // birthdayController.text = _profileController.basicInfo.birthday!;
+    // biographyController.text = _profileController.basicInfo.biography!;
   }
 
   @override
@@ -55,6 +61,19 @@ class UpdateFormController extends GetxController{
     birthdayController.dispose();
     biographyController.dispose();
     super.onClose();
+  }
+
+  void getMyBasicInfo() async {
+    await localData.getUser().then((value) => {
+      if( value!.name!.length > 0)
+        user(value)
+    });
+    print(user.value.name);
+    // var infoResponse = await ProfileService.getMyBasicInfo(id: '6ba7b810-9dad-11d1-80b4-00c04fd430c8');
+    // if ( infoResponse!.status == 200 && infoResponse.message!.response!.length > 0 ){
+    //   this.basicInfo = new Rx(infoResponse.message!.response![0]);
+    //   print('Username is: ' + basicInfo.value.username!);
+    // }
   }
 
   String? validateUsername(String value){
@@ -85,7 +104,7 @@ class UpdateFormController extends GetxController{
         biography: this.biography,
         birthday: DateTime.parse(this.birthday).toLocal().toString().split(' ')[0],
         email: this.email,
-        id: "6ba7b810-9dad-11d1-80b4-00c04fd430c8"
+        id: _profileController.user.value.id
       )
     ))){
       buttonState = ButtonState.success;

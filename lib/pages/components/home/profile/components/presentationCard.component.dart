@@ -1,16 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
+import 'package:my_project/controllers/profile.controller.dart';
 import 'package:my_project/core/models/stadistics.models.dart';
 import 'package:my_project/pages/components/home/profile/widgets/viewpicture.widget.dart';
 
-Row presentationCard(
-  BuildContext context,
-  {
-    String? username = 'test',
-    StadisticsModel? stadisticsModel
-  }
-) {
-  return Row(
+class PresentationCard extends StatelessWidget {
+  PresentationCard({Key? key, required this.context, required this.username}) : super(key: key);
+  final BuildContext context;
+  final String username;
+
+  ProfileController profileController = Get.find<ProfileController>();
+
+  @override
+  Widget build(BuildContext context) {
+    print(username);
+    return Row(
     mainAxisAlignment: MainAxisAlignment.center,
     children: [
       InkWell(
@@ -51,48 +56,52 @@ Row presentationCard(
             child: FittedBox(
               fit: BoxFit.fill,
               child: Row(
-                children: [
-                  Container(
-                    child: Text(
-                      (username!.length > 10) ? '@${username.substring(0, 9)}...' : '@$username',
-                      maxLines: 1,
-                      textAlign: TextAlign.left,
-                      style: TextStyle(
-                        fontWeight: FontWeight.w700,
-                        fontSize: 25,
-                        color: Colors.white70
-                      ),
-                    ),
-                  ),
-                  SizedBox(width: 10,),
-                  Center(
-                    child: Container(
-                      padding: EdgeInsets.all(5),
-                      decoration: BoxDecoration(
-                        color: Colors.white24,
-                        borderRadius: BorderRadius.circular(8)
-                      ),
-                      child: InkWell(
-                        splashColor: Colors.blueAccent,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Icon(Icons.copy, color: Colors.white60, size: 14,),
-                          ],
+                    children: [
+                      Container(
+                        child: Obx(
+                          () => Text(
+                          (username!.length > 10) ? "${username.substring(0, 9)}..." : "$username",
+                          maxLines: 1,
+                          textAlign: TextAlign.left,
+                          style: TextStyle(
+                            fontWeight: FontWeight.w700,
+                            fontSize: 25,
+                            color: Colors.white70
+                          ),
                         ),
-                        onTap: () {
-                          Clipboard.setData(
-                            ClipboardData(
-                              text: username
-                            )
-                          );
-                          print('you was copying $username to clipboard');
-                        },
+                        )
+                      
                       ),
-                    ),
+                      SizedBox(width: 10,),
+                      Center(
+                        child: Container(
+                          padding: EdgeInsets.all(5),
+                          decoration: BoxDecoration(
+                            color: Colors.white24,
+                            borderRadius: BorderRadius.circular(8)
+                          ),
+                          child: InkWell(
+                            splashColor: Colors.blueAccent,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Icon(Icons.copy, color: Colors.white60, size: 14,),
+                              ],
+                            ),
+                            onTap: () {
+                              Clipboard.setData(
+                                ClipboardData(
+                                  text: username ?? 'hola'
+                                )
+                              );
+                              // print('you was copying $controller.user.username to clipboard');
+                            },
+                          ),
+                        ),
+                      )
+                    ],
                   )
-                ],
-              ),
+              
             ),
           ),
           SizedBox(height: 10,),
@@ -181,4 +190,5 @@ Row presentationCard(
       )
     ],  
   );
+  }
 }

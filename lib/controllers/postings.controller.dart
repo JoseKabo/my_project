@@ -27,7 +27,7 @@ class PostingController extends GetxController{
       body: body
     );
     if (postings!.message!.message!.endsWith('Success')){
-      this.postingsList.add(new Postings(
+      this.postingsList.insert(0, new Postings(
         description: postings.message!.response![0].description,
         id: postings.message!.response![0].id,
         likes: postings.message!.response![0].likes,

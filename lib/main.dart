@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:get/get.dart';
+import 'package:my_project/controllers/profile.controller.dart';
 import 'package:my_project/pages/components/home/main.page.dart';
 import 'package:my_project/pages/components/home/posting/posting.page.dart';
 import 'package:my_project/pages/components/home/posting/widgets/recording.widget.dart';
@@ -17,6 +19,7 @@ class MyApp extends StatelessWidget {
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,
     ]);
+
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Lis.to',
