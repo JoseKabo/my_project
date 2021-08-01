@@ -1,7 +1,7 @@
 
 import 'package:flutter/material.dart';
-import 'package:my_project/shared/colors.dart';
 
+// ignore: non_constant_identifier_names
 Widget SignInForm( BuildContext context ){
 
   final size = MediaQuery.of(context).size;
