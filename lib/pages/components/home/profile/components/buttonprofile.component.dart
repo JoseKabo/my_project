@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_project/core/models/basicInfo.model.dart';
+import 'package:my_project/pages/components/home/profile/components/changepass.component.dart';
 import 'package:my_project/pages/components/home/profile/components/updateInfo.component.dart';
 
 InkWell buttonProfileShared({
@@ -39,18 +40,15 @@ InkWell buttonProfileShared({
         ),
       ),
       onTap: (){
-        (action!.endsWith('edit')) 
-          ? _showUpdateForm(
-            context
-          ) 
-          : _showUpdateForm(
-            context
-          );
+        _showUpdateForm(
+          context,
+          action: action!
+        );
       },
     );
   }
 
-void _showUpdateForm(context){
+void _showUpdateForm(context, {String action = 'edit'}){
   showModalBottomSheet(
     context: context,
     isScrollControlled: true,
@@ -64,8 +62,13 @@ void _showUpdateForm(context){
         BuildContext context,
         ScrollController scrollController
       ){
-        return UpdateInfo(
-          scrollController: scrollController
+        return (action.endsWith('edit')
+          ? UpdateInfo(
+            scrollController: scrollController
+          )
+          : ChangePasswordComponent(
+            scrollController: scrollController
+          ) 
         );
       },
     );

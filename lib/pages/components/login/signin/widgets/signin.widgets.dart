@@ -8,10 +8,29 @@ import 'package:my_project/pages/components/login/signup/signup.page.dart';
 
 import 'package:my_project/pages/components/login/signin/widgets/socialbutton.widget.dart';
 import 'package:my_project/pages/components/login/signin/widgets/title.signin.widget.dart';
+import 'package:my_project/shared/colors.dart';
 
 // ignore: non_constant_identifier_names
-Widget SignInBody( BuildContext context, SignInFormController signInFormController ){
+// Widget SignInBody( BuildContext context, SignInFormController signInFormController ){
 
+  
+// }
+
+class SignInBody extends StatefulWidget {
+  const SignInBody({Key? key, required this.context, required this.signInFormController}) : super(key: key);
+
+  final BuildContext context;
+  final SignInFormController signInFormController;
+
+  @override
+  _SignInBodyState createState() => _SignInBodyState();
+}
+
+class _SignInBodyState extends State<SignInBody> {
+  bool isVisible = false;
+
+  @override
+  Widget build(BuildContext context) {
   final size = MediaQuery.of(context).size;
   return SingleChildScrollView(
     child: Column(
@@ -28,18 +47,18 @@ Widget SignInBody( BuildContext context, SignInFormController signInFormControll
               children: [
                 titleSignIn(context),
                 Form(
-                  key: signInFormController.signInFormKey,
+                  key: widget.signInFormController.signInFormKey,
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                   child: Column(
                     children: [
                       _emailInput(
-                        signInFormController
+                        widget.signInFormController
                       ),
                       _passwordInput(
                         context,
-                        signInFormController
+                        widget.signInFormController
                       ),
-                      SignInButton(signInFormController: signInFormController)
+                      SignInButton(signInFormController: widget.signInFormController)
                     ],
                   ),
                 ),
@@ -52,7 +71,134 @@ Widget SignInBody( BuildContext context, SignInFormController signInFormControll
       ],
     ),
   );
+  }
+
+  Widget _passwordInput(
+  BuildContext context,
+  SignInFormController _signInFormController
+){
+  return Container(
+    padding: EdgeInsets.all(8.00),
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(bottom: 10.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                'Contraseña',
+                style: TextStyle(
+                  color: Colors.white70
+                ),
+              ),
+              Row(
+                children: [
+                  Icon(
+                    Icons.remove_red_eye_rounded,
+                    color: Colors.white54,
+                    size: 15.0,
+                  ),
+                  Switch(
+                    activeColor: ApplicationColors.kDangerColor,
+                    inactiveTrackColor: ApplicationColors.kPrimaryColor,
+                    value: isVisible,
+                    onChanged: (bool value) {
+                      setState(() {
+                        isVisible = value;
+                      });
+                    }
+                  )
+                ],
+              ),
+            ],
+          ),
+        ),
+        TextFormField(
+          decoration: new InputDecoration(
+            filled: true,
+            fillColor: Colors.white10,
+            hintText: 'Contraseña',
+            hintStyle: TextStyle(
+              color: Colors.white70,
+              fontSize: 14
+            ),
+            prefixIcon: Icon(
+              Icons.password,
+              color: Colors.white70,
+            ),
+            enabledBorder: OutlineInputBorder(
+              borderRadius: new BorderRadius.circular(10.0),
+              borderSide: BorderSide(
+                color: Colors.white,
+                width: 2.0,
+                style: BorderStyle.none
+              )
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: new BorderRadius.circular(15.0),
+              borderSide: BorderSide(
+                color: Colors.white,
+                width: 2.0,
+                style: BorderStyle.solid
+              )
+            ),
+            errorStyle: TextStyle(
+              color: Colors.redAccent,
+              fontWeight: FontWeight.bold
+            ),
+            disabledBorder: OutlineInputBorder(
+              borderRadius: new BorderRadius.circular(15.0),
+              borderSide: BorderSide(
+                color: Colors.redAccent,
+                width: 2.0,
+                style: BorderStyle.solid
+              )
+            ),
+            focusedErrorBorder: OutlineInputBorder(
+              borderRadius: new BorderRadius.circular(15.0),
+              borderSide: BorderSide(
+                color: Colors.redAccent,
+                width: 2.0,
+                style: BorderStyle.solid
+              )
+            ),
+            errorBorder: OutlineInputBorder(
+              borderRadius: new BorderRadius.circular(15.0),
+              borderSide: BorderSide(
+                color: Colors.redAccent,
+                width: 2.0,
+                style: BorderStyle.solid
+              )
+            ),
+            counterStyle: TextStyle(
+              color: Colors.white70
+            )
+          ),
+          keyboardType: TextInputType.text,
+          style: new TextStyle(
+            fontFamily: "Poppins",
+            color: Colors.white,
+            fontWeight: FontWeight.w600,
+          ),
+          obscureText: !isVisible,
+          obscuringCharacter: '■',
+          cursorColor: Colors.white,
+          cursorRadius: Radius.circular(12),
+          cursorHeight: 24,
+          cursorWidth: 2.5,
+          maxLength: 8,
+          controller: _signInFormController.passwordController,
+          onSaved: ( value ) => _signInFormController.password = value!,
+          validator: ( value ) => _signInFormController.validatePassword(value!),
+        ),
+      ],
+    ),
+  );
 }
+}
+
 
 Widget _signUpButton(BuildContext context, Size size){
   return Center(
@@ -126,122 +272,7 @@ Widget _socialButtons(Size size){
   );
 }
 
-Widget _passwordInput(
-  BuildContext context,
-  SignInFormController _signInFormController
-){
-  return Container(
-    padding: EdgeInsets.all(8.00),
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Padding(
-          padding: const EdgeInsets.only(bottom: 10.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                'Contraseña',
-                style: TextStyle(
-                  color: Colors.white70
-                ),
-              ),
-              // Row(
-              //   children: [
-              //     Text('Mostrar'),
-              //     Switch(
-              //       activeColor: ApplicationColors.kDangerColor,
-              //       inactiveTrackColor: ApplicationColors.kPrimaryColor,
-              //       value: true,
-              //       onChanged: (bool value) {}
-              //     )
-              //   ],
-              // ),
-            ],
-          ),
-        ),
-        TextFormField(
-          decoration: new InputDecoration(
-            filled: true,
-            fillColor: Colors.white10,
-            hintText: 'Contraseña',
-            hintStyle: TextStyle(
-              color: Colors.white70,
-              fontSize: 14
-            ),
-            prefixIcon: Icon(
-              Icons.password,
-              color: Colors.white70,
-            ),
-            enabledBorder: OutlineInputBorder(
-              borderRadius: new BorderRadius.circular(10.0),
-              borderSide: BorderSide(
-                color: Colors.white,
-                width: 2.0,
-                style: BorderStyle.none
-              )
-            ),
-            focusedBorder: OutlineInputBorder(
-              borderRadius: new BorderRadius.circular(15.0),
-              borderSide: BorderSide(
-                color: Colors.white,
-                width: 2.0,
-                style: BorderStyle.solid
-              )
-            ),
-            errorStyle: TextStyle(
-              color: Colors.redAccent,
-              fontWeight: FontWeight.bold
-            ),
-            disabledBorder: OutlineInputBorder(
-              borderRadius: new BorderRadius.circular(15.0),
-              borderSide: BorderSide(
-                color: Colors.redAccent,
-                width: 2.0,
-                style: BorderStyle.solid
-              )
-            ),
-            focusedErrorBorder: OutlineInputBorder(
-              borderRadius: new BorderRadius.circular(15.0),
-              borderSide: BorderSide(
-                color: Colors.redAccent,
-                width: 2.0,
-                style: BorderStyle.solid
-              )
-            ),
-            errorBorder: OutlineInputBorder(
-              borderRadius: new BorderRadius.circular(15.0),
-              borderSide: BorderSide(
-                color: Colors.redAccent,
-                width: 2.0,
-                style: BorderStyle.solid
-              )
-            ),
-            counterStyle: TextStyle(
-              color: Colors.white70
-            )
-          ),
-          keyboardType: TextInputType.text,
-          style: new TextStyle(
-            fontFamily: "Poppins",
-            color: Colors.white,
-            fontWeight: FontWeight.w600,
-          ),
-          obscureText: true,
-          obscuringCharacter: '■',
-          cursorColor: Colors.white,
-          cursorRadius: Radius.circular(12),
-          cursorHeight: 24,
-          cursorWidth: 2.5,
-          maxLength: 75,
-          controller: _signInFormController.passwordController,
-          onSaved: ( value ) => _signInFormController.password = value!,
-          validator: ( value ) => _signInFormController.validatePassword(value!),
-        ),
-      ],
-    ),
-  );
-}
+
 
 // void _showRecoverDialog(context){
 //   showCupertinoDialog(

@@ -1,15 +1,15 @@
 // To parse this JSON data, do
 //
-//     final signUpModelResponse = signUpModelResponseFromJson(jsonString);
+//     final SharedModelReponse = SharedModelReponseFromJson(jsonString);
 
 import 'dart:convert';
 
-SignUpModelResponse signUpModelResponseFromJson(String str) => SignUpModelResponse.fromJson(json.decode(str));
+SharedModelReponse sharedModelReponseFromJson(String str) => SharedModelReponse.fromJson(json.decode(str));
 
-String signUpModelResponseToJson(SignUpModelResponse data) => json.encode(data.toJson());
+String sharedModelReponseToJson(SharedModelReponse data) => json.encode(data.toJson());
 
-class SignUpModelResponse {
-    SignUpModelResponse({
+class SharedModelReponse {
+    SharedModelReponse({
         required this.error,
         required this.status,
         required this.message,
@@ -19,7 +19,7 @@ class SignUpModelResponse {
     int status;
     String message;
 
-    factory SignUpModelResponse.fromJson(Map<String, dynamic> json) => SignUpModelResponse(
+    factory SharedModelReponse.fromJson(Map<String, dynamic> json) => SharedModelReponse(
         error: json["error"],
         status: json["status"],
         message: json["message"],

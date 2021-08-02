@@ -93,7 +93,6 @@ class _ProfilePageState extends State<ProfilePage> with TickerProviderStateMixin
 
   @override
   Widget build(BuildContext context) {
-    var username = profileController.user.value.username ?? 'Mi perfil';
     var myPosthinks = profileController.myPostingsList;
     return Scaffold(
       backgroundColor: Colors.blueAccent,
@@ -116,7 +115,7 @@ class _ProfilePageState extends State<ProfilePage> with TickerProviderStateMixin
                       children: [
                         signOutButton(contextx: context,),
                         SizedBox(height: 30,),
-                        PresentationCard(context: context, username: username,)
+                        PresentationCard(context: context)
                       ],
                     ),
                     stretch: false,

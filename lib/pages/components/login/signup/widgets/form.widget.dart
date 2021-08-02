@@ -365,7 +365,7 @@ Widget _usernameInput(
           cursorRadius: Radius.circular(12),
           cursorHeight: 24,
           cursorWidth: 2.5,
-          maxLength: 20,
+          maxLength: 10,
           controller: _signUpController.usernameController,
           onSaved: (value) => _signUpController.username = value!,
           validator:  (value) => _signUpController.validateUsername(value!),

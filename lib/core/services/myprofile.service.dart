@@ -1,9 +1,11 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:my_project/core/models/SingUpResponse.model.dart';
 import 'package:my_project/core/models/basicInfo.model.dart';
 import 'package:my_project/core/models/newuserInfo.model.dart';
 import 'package:my_project/core/models/postings.model.dart';
 import 'package:my_project/core/models/stadistics.models.dart';
+import 'package:my_project/core/models/updatePassword.model.dart';
 import 'package:my_project/core/models/updateinfo.model.dart';
 import 'package:my_project/shared/endpoints.dart';
 
@@ -49,6 +51,28 @@ class ProfileService {
     
     var jsonReponse =uriResponse.body;
     return updateInfoResponseFromJson(jsonReponse);
+
+  }
+
+  static Future<SharedModelReponse?> updatePassword({
+    required UpdatePassword model
+  }) async {
+    final data = {
+      "id": model.id,
+      "lastPassword": model.lastPassword,
+      "newPassword": model.newPassword
+    };
+
+    var uriResponse = await client.post(
+      Uri.parse("${Endpoints.dev_external}/profile/changePass"),
+      body: data
+    );
+
+    if (uriResponse.statusCode != 200)
+      return null;
+    
+    var jsonReponse =uriResponse.body;
+    return sharedModelReponseFromJson(jsonReponse);
 
   }
 

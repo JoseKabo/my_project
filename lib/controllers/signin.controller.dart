@@ -53,10 +53,10 @@ class SignInFormController extends GetxController{
   }
 
   String? validatePassword(String value){
-    if (value.length >= 6 ) {
+    if (value.length == 8 ) {
       return null;
     }
-    return "Deben ser por lo menos 6 carácteres";
+    return "Deben ser 8 carácteres😁";
   }
 
   Future<bool> signInRequest() async {

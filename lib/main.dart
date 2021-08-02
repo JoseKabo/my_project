@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:get/get.dart';
-import 'package:my_project/controllers/profile.controller.dart';
 import 'package:my_project/pages/components/home/main.page.dart';
-import 'package:my_project/pages/components/home/posting/posting.page.dart';
-import 'package:my_project/pages/components/home/posting/widgets/recording.widget.dart';
 import 'package:my_project/pages/components/home/profile/profile.page.dart';
 import 'package:my_project/pages/components/login/signin/signin.page.dart';
 import 'package:my_project/pages/components/login/signup/components/interests.component.dart';

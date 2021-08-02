@@ -18,6 +18,8 @@ class _SignUpButtonState extends State<SignUpButton> {
   ButtonState currentState = ButtonState.idle;
   late BuildContext pcontext;
 
+  RxBool awaitResponse = false.obs;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -39,10 +41,10 @@ class _SignUpButtonState extends State<SignUpButton> {
           ButtonState.success: Colors.green.shade400,
         },
         onPressed: () async {
-          if(!signUpController.checkForm() || signUpController.awaitResponse.value ){
+          if(!signUpController.checkForm() ||  awaitResponse.value ){
             setState(() {
               this.currentState = ButtonState.fail;
-              if(signUpController.awaitResponse.value){
+              if(awaitResponse.value){
                   Fluttertoast.showToast(
                     msg: "Petición en curso...",
                     toastLength: Toast.LENGTH_LONG,
@@ -53,6 +55,7 @@ class _SignUpButtonState extends State<SignUpButton> {
             });
             return;
           }
+          awaitResponse.value = true;
           setState(() {
             this.currentState = ButtonState.loading;
           });
@@ -75,6 +78,7 @@ class _SignUpButtonState extends State<SignUpButton> {
               signUpController.cleanFields();
               Navigator.pop(context);
             }
+            awaitResponse.value = false;
           });
         },
         

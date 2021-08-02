@@ -29,8 +29,6 @@ class SignUpController extends GetxController {
   var password = '';
   final passValidator = RegExp(r"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$");
 
-  RxBool awaitResponse = false.obs;
-
   late ButtonState buttonState = ButtonState.idle;
 
   @override
@@ -116,8 +114,8 @@ class SignUpController extends GetxController {
 
   Future<bool> signUpRequest() async {
 
-    if(checkForm() && !awaitResponse.value ){
-      SignUpModelResponse response = await SignUpService.signUp(
+    if(checkForm() ){
+      SharedModelReponse response = await SignUpService.signUp(
         model: new SignUpModel(name: name, username: username, email: email, birthday: DateTime.parse(birthday), password: password)
       );
       if(response != null && response.error == false && response.message.endsWith('correcatamente')){

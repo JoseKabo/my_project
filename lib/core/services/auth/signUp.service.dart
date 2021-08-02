@@ -7,7 +7,7 @@ import 'package:my_project/shared/endpoints.dart';
 class SignUpService {
   static var client = http.Client();
 
-  static Future<SignUpModelResponse> signUp(
+  static Future<SharedModelReponse> signUp(
     {required SignUpModel model}
   ) async {
     var uriResponse = await client.post(
@@ -22,9 +22,9 @@ class SignUpService {
     );
     if( uriResponse.statusCode == 200 ){
       var jsonResponse = uriResponse.body;
-      return signUpModelResponseFromJson(jsonResponse);
+      return sharedModelReponseFromJson(jsonResponse);
     } else {
-      return signUpModelResponseFromJson('{"error":true,"status":400,"message":"Problema de conexión"}');
+      return sharedModelReponseFromJson('{"error":true,"status":400,"message":"Problema de conexión"}');
     }
   }
 

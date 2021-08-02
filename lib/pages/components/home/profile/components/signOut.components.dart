@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_project/core/datasource/local.data.dart';
+import 'package:my_project/pages/components/login/signin/signin.page.dart';
 import 'package:my_project/shared/colors.dart';
 class signOutButton extends StatelessWidget {
   const signOutButton({Key? key, required this.contextx}) : super(key: key);
@@ -34,7 +35,11 @@ class signOutButton extends StatelessWidget {
             await _localData.clearData();
             Future.delayed(
               Duration(milliseconds: 2000),
-              () => Navigator.popAndPushNamed(context, 'AuthScreen')
+              () => Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(builder: (context) => SignInPage()),
+                (Route<dynamic> route) => false,
+              )
             );
           },
           splashColor: ApplicationColors.kDangerColor,

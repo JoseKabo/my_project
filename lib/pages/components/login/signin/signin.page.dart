@@ -34,7 +34,7 @@ class _SignInPageState extends State<SignInPage> with SingleTickerProviderStateM
         children: [
           LoginBackground(),
           Center(
-            child: SignInBody(context, signInFormController)
+            child: SignInBody( context: context, signInFormController:  signInFormController)
           ),
         ],
       ),
