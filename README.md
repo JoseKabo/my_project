@@ -1,6 +1,6 @@
 # Posthinks Android App
 
-[![P|Posthinks](http://weesofts.com/assetspublics/posthinks/img_download.png)](https://www.mediafire.com/file/a46rn0y4h9mdud8/posthinks-app.apk/file)
+[![P|Posthinks](http://weesofts.com/assetspublics/posthinks/img_download.png)](https://www.mediafire.com/file/p2l9yq317uwd92x/posthinkss-app.apk/file)
 
 [![Twitter: JoKaMexD](https://img.shields.io/twitter/follow/JoKaMexD.svg?style=social)](https://twitter.com/JoKaMexD)
 
