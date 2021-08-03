@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
 
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Lis.to',
+      title: 'PosThinks',
       initialRoute: 'AuthScreen',
       localizationsDelegates: [
         GlobalMaterialLocalizations.delegate,
