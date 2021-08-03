@@ -1,16 +1,54 @@
-# my_project
+# Dillinger
+## _The Last Markdown Editor, Ever_
 
-A new Flutter project.
+[![P|Posthinks](http://weesofts.com/assetspublics/posthinks/img_download.png)](https://www.mediafire.com/file/a46rn0y4h9mdud8/posthinks-app.apk/file)
 
-## Getting Started
+[![Twitter: JoKaMexD](https://img.shields.io/twitter/follow/JoKaMexD.svg?style=social)](https://twitter.com/JoKaMexD)
 
-This project is a starting point for a Flutter application.
+# This is a BETA version, enojy my friend.
 
-A few resources to get you started if this is your first Flutter project:
+## About PosThinks
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+> The PosThinks app is a very simple application for
+> limited users in social networks for typing any
+> idea, with this app you can writing whatever.
+> personal information. All information will encrybted for security rules
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+
+## Tech
+
+This application is a personal project and using:
+
+- [Node.js]
+- [Express]
+- [PostgreSQL]
+- [Flutter]
+
+
+## Installation
+
+
+Steps for install PosThinks app.
+
+```sh
+Activate unknown resources in your smartphone
+Download posthinks-app.apk
+Install in your device
+enojoy!! 🎈
+```
+
+## Contact
+Have you something for me? Write me on Twitter📢
+👤 **JoseKabo**
+
+* Website: jokaxd.tecdevsmx.com
+* Twitter: [@JoKaMexD](https://twitter.com/JoKaMexD)
+
+
+## Access
+ ### All access and content is at your own risk
+
+### All rights reserved
+## License
+
+MIT
