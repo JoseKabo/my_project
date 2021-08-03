@@ -108,7 +108,7 @@ class _ChangePasswordComponentState extends State<ChangePasswordComponent> {
                                     ),
                                     child: ProgressButton(
                                       stateWidgets: {
-                                        ButtonState.idle: Text("REGISTRARSE AHORA",style: TextStyle(color: Colors.white, fontWeight: FontWeight.w500),),
+                                        ButtonState.idle: Text("ACTUALIZAR CONTRASEÑA",style: TextStyle(color: Colors.white, fontWeight: FontWeight.w500),),
                                         ButtonState.loading: Text("Por favor espere",style: TextStyle(color: Colors.white, fontWeight: FontWeight.w500),),
                                         ButtonState.fail: Text("Algo salio mal",style: TextStyle(color: Colors.white, fontWeight: FontWeight.w500),),
                                         ButtonState.success: Text("Excelente :D",style: TextStyle(color: Colors.white, fontWeight: FontWeight.w500),)

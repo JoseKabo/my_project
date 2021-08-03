@@ -8,7 +8,7 @@ Widget titleSignIn( context ){
       Container(
         child: FittedBox(
           child: Text(
-            'INICIAR SESION',
+            'INICIAR SESIÓN',
             maxLines: 2,
             textAlign: TextAlign.left,
             style: TextStyle(

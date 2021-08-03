@@ -1,8 +1,8 @@
 import 'dart:convert';
 
-SignInModel addPostReponseFromJson(String str) => SignInModel.fromJson(json.decode(str));
+SignInModel signInModelFromJson(String str) => SignInModel.fromJson(json.decode(str));
 
-String addPostReponseToJson(SignInModel data) => json.encode(data.toJson());
+String signInModelToJson(SignInModel data) => json.encode(data.toJson());
 
 class SignInModel {
     SignInModel({

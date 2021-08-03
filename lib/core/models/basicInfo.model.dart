@@ -5,6 +5,18 @@ BasicInfoResponse basicInfoResponseFromJson(String str) => BasicInfoResponse.fro
 
 String basicInfoResponseToJson(BasicInfoResponse data) => json.encode(data.toJson());
 
+String sharedIdModelToJson(SharedId data) => json.encode(data.toJson());
+class SharedId {
+  SharedId({
+    this.id,
+  });
+  String? id;
+
+  Map<String, dynamic> toJson() => {
+    "id": id
+  };
+}
+
 class BasicInfoResponse {
     BasicInfoResponse({
         this.error,

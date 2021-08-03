@@ -37,7 +37,7 @@ class ProfileController extends GetxController{
   void fetchMyPostings() async {
     if (user.value.id!.length > 0){
       String id = user.value.id ?? '';
-      var postings = await ProfileService.fetchMyPostings(id: id);
+      var postings = await ProfileService.fetchMyPostings(id: new SharedId(id: id));
       if ( postings!.message!.message!.length > 0 && postings.message!.message!.endsWith('Success')){
         myPostingsList.value = postings.message!.response!;
       }

@@ -8,19 +8,18 @@ import 'package:my_project/core/models/stadistics.models.dart';
 import 'package:my_project/core/models/updatePassword.model.dart';
 import 'package:my_project/core/models/updateinfo.model.dart';
 import 'package:my_project/shared/endpoints.dart';
+import 'package:my_project/shared/headers.dart';
 
 class ProfileService {
   static var client = http.Client();
 
   static Future<PostingsResponse?> fetchMyPostings({
-    required String id
+    required SharedId id
   }) async {
-    final data = {
-      'id': id
-    };
     var uriResponse = await client.post(
-      Uri.parse("${Endpoints.dev_external}/profile/myposts"),
-      body: data
+      Uri.parse("${Endpoints.prod_endpoint}/profile/myposts"),
+      body: sharedIdModelToJson(id),
+      headers: HeadersRequest.requestHeaders
     );
     if(uriResponse.statusCode == 200) {
       var jsonResponse = uriResponse.body;
@@ -32,18 +31,13 @@ class ProfileService {
   }
 
   static Future<UpdateInfoResponse?> updateInfo({
-    NewUserInfoModel? newuserInfo
+    required NewUserInfoModel newuserInfo
   }) async {
-    final data = {
-      "id": newuserInfo!.id,
-      "email": newuserInfo.email,
-      "birthday": newuserInfo.birthday,
-      "biography": newuserInfo.biography
-    };
 
     var uriResponse = await client.post(
-      Uri.parse("${Endpoints.dev_external}/profile/changeInfo"),
-      body: data
+      Uri.parse("${Endpoints.prod_endpoint}/profile/changeInfo"),
+      body: newUserInfoModelToJson(newuserInfo),
+      headers: HeadersRequest.requestHeaders
     );
 
     if (uriResponse.statusCode != 200)
@@ -57,15 +51,11 @@ class ProfileService {
   static Future<SharedModelReponse?> updatePassword({
     required UpdatePassword model
   }) async {
-    final data = {
-      "id": model.id,
-      "lastPassword": model.lastPassword,
-      "newPassword": model.newPassword
-    };
 
     var uriResponse = await client.post(
-      Uri.parse("${Endpoints.dev_external}/profile/changePass"),
-      body: data
+      Uri.parse("${Endpoints.prod_endpoint}/profile/changePass"),
+      body: updatePasswordToJson(model),
+      headers: HeadersRequest.requestHeaders
     );
 
     if (uriResponse.statusCode != 200)
@@ -83,8 +73,9 @@ class ProfileService {
       'id': id
     };
     var uriResponse = await client.post(
-      Uri.parse('${Endpoints.dev_external}/profile/mybasicinfo'),
-      body: data
+      Uri.parse('${Endpoints.prod_endpoint}/profile/mybasicinfo'),
+      body: data,
+      headers: HeadersRequest.requestHeaders
     );
     if(uriResponse.statusCode == 200){
       var jsonResponse = uriResponse.body;
@@ -102,8 +93,9 @@ class ProfileService {
       'id': id
     };
     var uriResponse = await client.post(
-      Uri.parse('${Endpoints.dev_external}/profile/mystadistics'),
-      body: data
+      Uri.parse('${Endpoints.prod_endpoint}/profile/mystadistics'),
+      body: data,
+      headers: HeadersRequest.requestHeaders
     );
     if(uriResponse.statusCode == 200){
       var jsonResponse = uriResponse.body;

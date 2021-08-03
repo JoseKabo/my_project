@@ -1,8 +1,8 @@
 import 'dart:convert';
 
-AddPostModel addPostReponseFromJson(String str) => AddPostModel.fromJson(json.decode(str));
+AddPostModel addPostModelFromJson(String str) => AddPostModel.fromJson(json.decode(str));
 
-String addPostReponseToJson(AddPostModel data) => json.encode(data.toJson());
+String addPostModelToJson(AddPostModel data) => json.encode(data.toJson());
 
 class AddPostModel {
     AddPostModel({

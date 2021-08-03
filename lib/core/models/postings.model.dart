@@ -42,7 +42,9 @@ class Message {
     String? message;
 
     factory Message.fromJson(Map<String, dynamic> json) => Message(
-        response: List<Postings>.from(json["response"].map((x) => Postings.fromJson(x))),
+        response: List<Postings>.from(json["response"].map(
+          (x) => Postings.fromJson(x))
+        ),
         message: json["message"],
     );
 

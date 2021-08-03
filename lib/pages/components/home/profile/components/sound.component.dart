@@ -15,7 +15,7 @@ Center soundItem({
         margin: EdgeInsets.all(13),
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: NetworkImage('http://weesofts.com/assetspublics/posthinks/bkg_posthinks.png'),
+            image: AssetImage('assets/img/bkg_posthinks.png'),
             fit: BoxFit.cover,
           ),
           borderRadius: BorderRadius.circular(17),

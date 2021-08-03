@@ -24,9 +24,7 @@ class PresentationCard extends StatelessWidget {
             right: 10
           ),
           child: CircleAvatar(
-            backgroundImage: NetworkImage(
-              "http://weesofts.com/assetspublics/posthinks/profile_posthinks.png",
-            ),
+            backgroundImage: AssetImage('assets/img/profile_posthinks.png'),
             radius: 45.0,
           ),
         ),
