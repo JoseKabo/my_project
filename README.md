@@ -1,5 +1,4 @@
-# Dillinger
-## _The Last Markdown Editor, Ever_
+# Posthinks Android App
 
 [![P|Posthinks](http://weesofts.com/assetspublics/posthinks/img_download.png)](https://www.mediafire.com/file/a46rn0y4h9mdud8/posthinks-app.apk/file)
 
