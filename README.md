@@ -4,7 +4,7 @@
 
 [![Twitter: JoKaMexD](https://img.shields.io/twitter/follow/JoKaMexD.svg?style=social)](https://twitter.com/JoKaMexD)
 
-# This is a BETA version, enojy my friend.
+# This is a BETA version, enjoy my friend.
 
 ## About PosThinks
 
